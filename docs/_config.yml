@@ -1,0 +1,44 @@
+# STARFlow Video Results Gallery
+
+name: STARFlow Gallery
+description: Video results gallery showcasing STARFlow and STARFlow-V generated videos
+
+# GitHub Pages configuration
+url: "https://apple.github.io"
+baseurl: "/ml-starflow"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# SEO settings
+title: "STARFlow Video Results Gallery"
+author: "Apple Inc."
+description: "High-quality text-to-video generation with transformer autoregressive flows"
+
+# Social media
+twitter:
+  username: apple
+  card: summary_large_image
+
+# Analytics (optional)
+google_analytics: G-XXXXXXXXXX

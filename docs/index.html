@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STARFlow Video Results Gallery</title>
+    <meta name="description" content="Video results gallery showcasing STARFlow and STARFlow-V generated videos">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="title">STARFlow Video Results Gallery</h1>
+                <p class="subtitle">High-quality text-to-video generation with transformer autoregressive flows</p>
+                <div class="badges">
+                    <a href="https://arxiv.org/abs/2506.06276" class="badge arxiv">arXiv Paper</a>
+                    <a href="https://github.com/apple/ml-starflow" class="badge github">GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Navigation Tabs -->
+            <nav class="tabs">
+                <button class="tab-button active" data-tab="text-to-video">Text-to-Video</button>
+                <button class="tab-button" data-tab="image-to-video">Image-to-Video</button>
+                <button class="tab-button" data-tab="long-videos">Long Videos</button>
+                <button class="tab-button" data-tab="comparisons">Comparisons</button>
+            </nav>
+
+            <!-- Text-to-Video Section -->
+            <section id="text-to-video" class="tab-content active">
+                <h2>Text-to-Video Generation</h2>
+                <p>STARFlow-V generates high-quality videos directly from text descriptions.</p>
+
+                <div class="video-grid">
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/corgi_thumbnail.jpg">
+                                <source src="videos/text-to-video/corgi_dog_camera.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>"A corgi dog looks at the camera"</h3>
+                            <p class="video-details">480p • 16fps • 5s • CFG 3.5</p>
+                        </div>
+                    </div>
+
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/cat_piano_thumbnail.jpg">
+                                <source src="videos/text-to-video/cat_playing_piano.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>"A film still of a cat playing piano"</h3>
+                            <p class="video-details">480p • 16fps • 5s • CFG 3.6</p>
+                        </div>
+                    </div>
+
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/ocean_waves_thumbnail.jpg">
+                                <source src="videos/text-to-video/ocean_waves_sunset.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>"Ocean waves crashing against rocks at sunset"</h3>
+                            <p class="video-details">480p • 16fps • 5s • CFG 3.5</p>
+                        </div>
+                    </div>
+
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/city_rain_thumbnail.jpg">
+                                <source src="videos/text-to-video/city_rain_night.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>"A bustling city street with rain at night, neon lights reflecting"</h3>
+                            <p class="video-details">480p • 16fps • 5s • CFG 3.5</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image-to-Video Section -->
+            <section id="image-to-video" class="tab-content">
+                <h2>Image-to-Video Generation</h2>
+                <p>Generate videos from input images while maintaining temporal consistency.</p>
+
+                <div class="video-grid">
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/portrait_wind_thumbnail.jpg">
+                                <source src="videos/image-to-video/portrait_wind.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>Portrait → "Hair blowing in the wind"</h3>
+                            <p class="video-details">480p • 16fps • 5s • CFG 3.5</p>
+                        </div>
+                    </div>
+
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/landscape_clouds_thumbnail.jpg">
+                                <source src="videos/image-to-video/landscape_clouds.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>Landscape → "Clouds moving across the sky"</h3>
+                            <p class="video-details">480p • 16fps • 5s • CFG 3.5</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Long Videos Section -->
+            <section id="long-videos" class="tab-content">
+                <h2>Extended Length Videos</h2>
+                <p>STARFlow-V can generate videos longer than the training sequence using Jacobi sampling.</p>
+
+                <div class="video-grid">
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/forest_walk_long_thumbnail.jpg">
+                                <source src="videos/long-videos/forest_walk_15s.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>"Walking through a peaceful forest path"</h3>
+                            <p class="video-details">480p • 16fps • 15s • 241 frames • CFG 3.5</p>
+                        </div>
+                    </div>
+
+                    <div class="video-item">
+                        <div class="video-container">
+                            <video controls poster="videos/thumbnails/space_journey_long_thumbnail.jpg">
+                                <source src="videos/long-videos/space_journey_30s.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>"A journey through space with stars and nebulas"</h3>
+                            <p class="video-details">480p • 16fps • 30s • 481 frames • CFG 3.5</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparisons Section -->
+            <section id="comparisons" class="tab-content">
+                <h2>Method Comparisons</h2>
+                <p>Side-by-side comparisons with other video generation methods.</p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h3>"A dancer performing on stage"</h3>
+                        <div class="comparison-videos">
+                            <div class="comparison-video">
+                                <h4>STARFlow-V (Ours)</h4>
+                                <video controls poster="videos/thumbnails/dancer_ours_thumbnail.jpg">
+                                    <source src="videos/comparisons/dancer_starflow.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="comparison-video">
+                                <h4>Baseline Method</h4>
+                                <video controls poster="videos/thumbnails/dancer_baseline_thumbnail.jpg">
+                                    <source src="videos/comparisons/dancer_baseline.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Details -->
+            <section class="technical-details">
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h3>Model Architecture</h3>
+                        <ul>
+                            <li>STARFlow: 3B parameters for text-to-image</li>
+                            <li>STARFlow-V: 7B parameters for text-to-video</li>
+                            <li>Transformer autoregressive flow architecture</li>
+                            <li>Up to 640×480 resolution</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Generation Settings</h3>
+                        <ul>
+                            <li>Resolution: 640×480 (480p)</li>
+                            <li>Frame rate: 8-24 FPS</li>
+                            <li>Length: 5-30+ seconds</li>
+                            <li>Classifier-free guidance: 3.5-3.6</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>High temporal consistency</li>
+                            <li>Fast Jacobi iteration sampling</li>
+                            <li>Text and image conditioning</li>
+                            <li>Variable aspect ratios</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Apple Inc. All rights reserved. |
+                <a href="https://github.com/apple/ml-starflow">GitHub</a> |
+                <a href="https://arxiv.org/abs/2506.06276">Paper</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

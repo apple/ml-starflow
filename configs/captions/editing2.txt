@@ -1,0 +1,158 @@
+A jade teapot on a bamboo mat [edit] change the teapot to polished copper
+A marble bust lit by soft window light [edit] rotate the bust 30° to the left
+A commuter train entering a tunnel [edit] replace the train with a freight locomotive
+A medieval stone bridge over misty river [edit] add flower boxes along the railing
+A neon food truck at midnight market [edit] switch neon sign color to violet
+A bonsai pine on a wooden shelf [edit] enlarge the bonsai roots onto a rock slab
+A cyclist on a snow-dusted trail [edit] remove all snow for summer scenery
+A row of lab flasks with blue liquid [edit] change liquid to gradient rainbow
+A grand piano on a concert hall stage [edit] lower the key cover halfway
+A lighthouse beam cutting through fog [edit] intensify light to double brightness
+An astronaut planting a flag on Mars [edit] swap Mars sand for lunar regolith
+A vintage typewriter beside ink bottle [edit] add dried lavender sprig on keys
+A plate of macarons in pastel hues [edit] convert entire scene to monochrome
+A sunflower field at golden hour [edit] turn one sunflower to face the viewer
+A violin resting on velvet cloth [edit] change violin varnish from brown to deep red
+A mountain climber reaching the summit [edit] add celebratory confetti burst
+A glass of iced lemonade on patio table [edit] remove ice cubes completely
+A ceramic mug with hand-painted flowers [edit] replace floral pattern with stripes
+A koi pond with rippling water [edit] freeze the water surface perfectly still
+A bookshelf of worn leather tomes [edit] insert a glowing holographic book
+A city skyline reflected on wet pavement [edit] change reflection to fragmented shards
+A chef garnishing sushi rolls [edit] replace sushi with colorful mochi
+A freight ship in calm harbor [edit] add gentle morning fog around hull
+A ballerina mid-pirouette on empty stage [edit] add motion trail behind tutu
+A rustic barn in golden wheat field [edit] turn wheat into lavender plants
+A steaming bowl of pho on wooden table [edit] add fresh chili slices floating
+A geodesic dome in arctic landscape [edit] shift lighting to sunset pinks
+An old pocket watch on velvet [edit] set time from 4:00 to 10:10
+An oak tree with autumn leaves [edit] transition leaves to spring green
+A skateboarder grinding rail [edit] add spark particles at contact point
+A crystal chandelier in foyer [edit] dim ambient light for stronger contrast
+A swan gliding on mirror lake [edit] create concentric ripples behind swan
+A row of wind turbines on ridge [edit] turn blades into transparent glass
+A latte with leaf-shaped foam art [edit] change art to a rosette pattern
+A gourmet burger on slate board [edit] remove cheese slice entirely
+A paper airplane against blue sky [edit] add sketched contrail behind plane
+A flamenco guitarist on street corner [edit] replace guitar with a violin
+A snow-covered pine forest [edit] add footprints leading into distance
+A stack of vinyl records [edit] change record labels to bright cyan
+An artist mixing oil paints [edit] replace palette knife with fine brush
+A classic red telephone booth [edit] repaint booth matte black
+A glass skyscraper at sunrise [edit] add low-lying rain clouds wrapping base
+A puppy chasing butterflies [edit] swap butterflies for floating bubbles
+A clay pot on pottery wheel [edit] apply crackle glaze texture
+A bridge enveloped in autumn fog [edit] lift fog to reveal river below
+A salad bowl of mixed greens [edit] add sliced strawberries on top
+A desert road with heat haze [edit] insert distant thunderstorm on horizon
+A chess set mid-game [edit] replace black queen with 3-D printed model
+A coral reef teeming with fish [edit] shift palette to infrared false-color
+A fountain in public square [edit] stop water flow to frozen sculptural state
+A maple leaf on wet asphalt [edit] intensify reflections around leaf
+A violinist practicing scales [edit] add metronome on nearby stand
+A bowl of ramen with narutomaki [edit] remove narutomaki slices
+A modern smartwatch on wrist [edit] change wristband to woven fabric
+A candlelit dinner table [edit] extinguish leftmost candle only
+A forest path carpeted with moss [edit] scatter pink cherry petals along trail
+A drone view over rice terraces [edit] turn season to early harvest yellow
+A plate of assorted cheeses [edit] replace blue cheese with goat cheese
+A fox sitting in snowy field [edit] add softly falling snowflakes
+A graffiti mural on brick wall [edit] desaturate bricks, keep mural color
+A leather-bound journal and quill [edit] age journal cover with scratches
+A small cabin under starry sky [edit] add faint aurora on horizon
+A cup of espresso with crema [edit] lighten crema for flat white look
+A bouquet of roses in vase [edit] change roses from red to white
+A lighthouse on rocky coastline [edit] add crashing wave spray
+A billiard table break shot [edit] freeze cue ball before impact
+A hot-air balloon over vineyards [edit] change balloon envelope to stripes
+A snow leopard on rocky ledge [edit] brighten ambient light for detail
+A sushi chef slicing tuna [edit] replace tuna with salmon
+A violin bow resting on strings [edit] slightly raise bow above strings
+A stack of pancakes with butter [edit] drizzle maple syrup generously
+A waterfall in tropical jungle [edit] adjust shutter to silky water effect
+A painter’s easel by window [edit] add soft morning light beam
+A cherry pie cooling on sill [edit] remove lattice crust for open top
+A monorail passing futuristic city [edit] shift city lighting to neon pink-blue
+A rustic windmill beside field [edit] stop windmill blades mid-motion
+A latte art heart [edit] invert colors for photographic negative
+A scuba diver photographing coral [edit] switch diver’s fins to bright yellow
+A snowy owl in flight [edit] extend wingspan slightly wider
+A violin case with sheet music [edit] add handwritten annotations
+A garden gnome among tulips [edit] repaint gnome hat to polka dots
+A stone archway leading to courtyard [edit] add creeping ivy on stone
+A bowl of blueberries [edit] remove two berries for asymmetry
+A photographer in desert dunes [edit] add blowing sand trail behind
+A city street with puddles [edit] enhance neon reflections in puddles
+A close-up of eye with makeup [edit] change iris color to amber
+A vintage car parked roadside [edit] convert entire scene to sepia
+A farmer holding basket of apples [edit] change apples to peaches
+A plate of spaghetti carbonara [edit] sprinkle extra parmesan on top
+A kayaker on serene lake [edit] add low morning mist on water
+A bee on sunflower [edit] isolate bee in spotlight, darken background
+A commuter bike leaning on wall [edit] switch bike frame to bamboo
+A violin soloist on stage [edit] dim background to silhouette orchestra
+A chess clock beside board [edit] set clock to 00:05 time left
+A coffee grinder with beans [edit] reduce bean level by half
+A cliffside pagoda at dawn [edit] add low-lying clouds below pagoda
+A pitcher of lemonade [edit] replace ice cubes with frozen lemon slices
+A forest waterfall in winter [edit] transform to autumn foliage
+A crystal ball on pedestal [edit] show swirling galaxy inside
+A plate of dim sum baskets [edit] stack one extra basket on left
+A gondola on Venetian canal [edit] add lanterns hanging above canal
+A foxglove plant in bloom [edit] desaturate background for subject pop
+A pianist’s hands mid-chord [edit] blur hands for motion effect
+A stack of handmade soaps [edit] emboss top soap with floral logo
+A campfire with marshmallows [edit] increase flame height 30%
+A glass of red wine swirling [edit] switch wine color to rosé
+A street dog drinking puddle [edit] remove puddle, replace with food bowl
+A marble statue under skylight [edit] add tiny crack at base
+A subway entrance with stairs [edit] turn scene into rainy evening
+A painter holding color wheel [edit] rotate wheel 90 degrees clockwise
+A plate of tacos with salsa [edit] change salsa from red to green
+A violin decked in flowers [edit] remove all flowers except one rose
+A desert highway at dusk [edit] add old neon motel sign
+A kayak on river rapids [edit] calm water to slow flow
+A snow globe with cabin [edit] add swirling glitter instead of snow
+A chef flipping wok vegetables [edit] increase flame size dramatically
+A castle on cliff at sunset [edit] alter sky to twilight stars
+A latte with leaf art [edit] add cinnamon dusting on froth
+A bonsai tree in tray [edit] add miniature stone lantern near trunk
+A neon-lit alley with puddles [edit] reduce neon signs by half
+A violin bridge macro [edit] add faint dust for realism
+A picnic table with sandwiches [edit] remove one sandwich for negative space
+A city skyline sunrise [edit] shift color palette to dusk purples
+A bowl of ramen [edit] replace noodles with udon
+A journal on wooden desk [edit] add fountain pen diagonal across page
+A barista steaming milk [edit] increase visible steam
+A surfer catching wave [edit] add sun flare in corner
+A vintage film camera [edit] open lens cap slightly
+A plate of donuts [edit] coat top donut with sprinkles
+A horse grazing meadow [edit] extend mane length slightly
+A lighthouse silhouette [edit] brighten beacon light halo
+A violin on chair [edit] place bow across strings
+A chef torching crème brûlée [edit] darken caramelization spots
+A koi pond reflection [edit] add falling cherry petals
+A mountain trail hiker [edit] insert trail signpost
+A glass orb on sand [edit] show inverted reflection sharper
+An espresso shot [edit] double crema thickness
+A windmill at dusk [edit] turn blades into slow blur motion
+A chessboard aerial view [edit] highlight white king with glow
+A bakery croissant stack [edit] dust powdered sugar on top two croissants
+A sunset beach scene [edit] add silhouetted palm in foreground
+A violin scroll close-up [edit] tint varnish warmer amber
+A dripping paintbrush [edit] change paint color to teal
+A bowl of ramen eggs [edit] cut egg halves for yolk view
+A street cafe table [edit] remove one chair for asymmetry
+A forest creek [edit] add stepping stones across water
+A cityscape night sky [edit] add comet trail overhead
+A cup of cocoa with whipped cream [edit] sprinkle cocoa powder on top
+A classical guitar against wall [edit] desaturate background only
+A crystal decanter [edit] fill decanter halfway with amber liquid
+A parchment map [edit] burn map edges slightly
+A snowflake macro [edit] invert to dark field illumination
+A violin tailpiece macro [edit] add subtle wood grain texture
+A racing bike [edit] swap wheels to deep-rim carbon
+A farmer in wheat field [edit] change wheat to barley heads
+A hummingbird feeder [edit] add second bird approaching
+A street market fruit stand [edit] rearrange apples to pyramid
+A calligraphy brush stroke [edit] thicken stroke width 15%
