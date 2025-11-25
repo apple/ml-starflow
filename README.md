@@ -20,7 +20,7 @@ This is the official open source release of **STARFlow** and **STARFlow-V**, sta
 - **[STARFlow](https://arxiv.org/abs/2506.06276)**:  Scaling Latent Normalizing Flows for High-resolution Image Synthesis (NeurIPS 2024 Spotlight)
 - **STARFlow-V**: End-to-End Video Generative Modeling with Autoregressive Normalizing Flows (arXiv TBD)
 
-🎬 **[View Video Results Gallery](https://apple.github.io/ml-starflow)** - See examples of generated videos and comparisons (TBD soon)
+🎬 **[View Video Results Gallery](https://starflow-v.github.io)** - See examples of generated videos and comparisons (TBD soon)
 
 ## 🚀 Quick Start
 
