@@ -31,8 +31,16 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from misc import print, xprint
 from misc.condition_utils import get_camera_condition, get_point_condition, get_wind_condition
 
-# Initialize multiprocessing manager
-manager = torch.multiprocessing.Manager()
+# Lazy multiprocessing manager; creating at import breaks spawn on macOS
+manager = None
+
+
+def get_mp_manager():
+    """Create or return a global multiprocessing Manager."""
+    global manager
+    if manager is None:
+        manager = torch.multiprocessing.Manager()
+    return manager
 
 # ==== helpers ==== #
 
@@ -353,10 +361,12 @@ class ImageTarDataset(Dataset):
 class OnlineImageTarDataset(ImageTarDataset):
     max_retry_n = 20
     max_read = 4096
-    tar_keys_lock = manager.Lock() if manager is not None else None
     
     def __init__(self, dataset_tsv, image_size, batch_size=None, **kwargs):
         super().__init__(dataset_tsv, image_size, **kwargs)
+
+        mgr = get_mp_manager()
+        self.tar_keys_lock = mgr.Lock() if mgr is not None else None
         
         self.tar_lists = defaultdict(lambda: [])
         self.tar_image_buckets = defaultdict(lambda: defaultdict(lambda: 0))
@@ -369,7 +379,7 @@ class OnlineImageTarDataset(ImageTarDataset):
         for key in self.tar_lists.keys():
             repeat = int(self.weights.get(key, 1))
             self.reset_tar_keys.extend([key] * repeat)
-        self.tar_keys = manager.list(self.reset_tar_keys) if manager is not None else list(self.reset_tar_keys)
+        self.tar_keys = mgr.list(self.reset_tar_keys) if mgr is not None else list(self.reset_tar_keys)
         
         # Use more workers for better prefetching, but limit to reasonable number
         self.worker_executors = {}
@@ -436,12 +446,20 @@ class OnlineImageTarDataset(ImageTarDataset):
                 time.sleep(min(i * 0.1, 5))  # Exponential backoff with cap
         
     def _get_next_key(self):
-        with self.tar_keys_lock:
+        lock = self.tar_keys_lock
+        if lock:
+            with lock:
+                if not self.tar_keys or len(self.tar_keys) == 0:
+                    xprint(f'[WARN] all dataset exhausted... this should not happen usually')
+                    self.tar_keys.extend(list(self.reset_tar_keys))  # reset
+                    random.shuffle(self.tar_keys)
+                return self.tar_keys.pop(0)  # remove and return the first key
+        else:
             if not self.tar_keys or len(self.tar_keys) == 0:
                 xprint(f'[WARN] all dataset exhausted... this should not happen usually')
                 self.tar_keys.extend(list(self.reset_tar_keys))  # reset
                 random.shuffle(self.tar_keys)
-            return self.tar_keys.pop(0)  # remove and return the first key
+            return self.tar_keys.pop(0)
     
     def _start_prefetch(self, wid):
         """Start prefetching the next tar file for the worker"""
@@ -535,8 +553,11 @@ class OnlineImageTarDataset(ImageTarDataset):
             
             # shuffle the image list
             random.shuffle(self.tar_lists[key])  # shuffle the list
-            with self.tar_keys_lock:
-                self.tar_keys.append(key)  # return the key to the list so other workers can use it
+            if self.tar_keys_lock:
+                with self.tar_keys_lock:
+                    self.tar_keys.append(key)  # return the key to the list so other workers can use it
+            else:
+                self.tar_keys.append(key)
             
             self._start_prefetch(wid)  # start prefetching the next tar file
         else:

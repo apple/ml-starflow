@@ -4,7 +4,7 @@
 
 export NCCL_DEBUG=WARN
 
-bz=8
+bz=16
 ngpus=1
 cap=${1:-"a film still of a cat playing piano"}
 input_image=${2:-none}

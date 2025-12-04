@@ -9,7 +9,7 @@ sentencepiece
 wandb[media]
 torchmetrics[image]
 simple_parsing
-decord
+eva-decord
 opencv-python
 psutil
 git+https://github.com/KeKsBoTer/torch-dwt
