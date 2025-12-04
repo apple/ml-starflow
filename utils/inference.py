@@ -221,7 +221,13 @@ def process_denoising(samples: torch.Tensor, y: List[str], args,
         # Denoising not enabled or not applicable
         return samples
 
-    torch.cuda.empty_cache()
+    # Track the original device (CUDA/MPS/CPU) and clear cache when supported
+    device = samples.device
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    elif torch.backends.mps.is_available():
+        torch.mps.empty_cache()
+
     assert isinstance(samples, torch.Tensor)
     samples = samples.cpu()
 
@@ -232,7 +238,7 @@ def process_denoising(samples: torch.Tensor, y: List[str], args,
     is_video = samples.dim() == 5
 
     for j in range(b // db):
-        x_all = torch.clone(samples[j * db : (j + 1) * db]).detach().cuda()
+        x_all = torch.clone(samples[j * db : (j + 1) * db]).detach().to(device)
         y_batch = y[j * db : (j + 1) * db] if y is not None else None
 
         if is_video:
@@ -256,10 +262,13 @@ def process_denoising(samples: torch.Tensor, y: List[str], args,
                 args, text_encoder_kwargs, noise_std
             )
 
-        torch.cuda.empty_cache()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        elif torch.backends.mps.is_available():
+            torch.mps.empty_cache()
         denoised_samples.append(x_all.detach().cpu())
 
-    return torch.cat(denoised_samples, dim=0).cuda()
+    return torch.cat(denoised_samples, dim=0).to(device)
 
 
 def simple_denoising(model, samples: torch.Tensor, y_encoded,
@@ -274,4 +283,3 @@ def simple_denoising(model, samples: torch.Tensor, y_encoded,
         model, samples, y_encoded, text_encoder, tokenizer,
         args, text_encoder_kwargs, noise_std, sigma_next=0
     )
-

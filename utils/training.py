@@ -66,13 +66,15 @@ class Distributed:
     timeout: float = 72000
 
     def __init__(self):
+        use_cuda = torch.cuda.is_available()
         if os.environ.get('MASTER_PORT'):  # When running with torchrun
             self.rank = int(os.environ['RANK'])
             self.local_rank = int(os.environ['LOCAL_RANK'])
             self.world_size = int(os.environ['WORLD_SIZE'])
             self.distributed = True
+            backend = 'nccl' if use_cuda else 'gloo'
             torch.distributed.init_process_group(
-                backend='nccl',
+                backend=backend,
                 init_method='env://',
                 world_size=self.world_size,
                 timeout=datetime.timedelta(seconds=self.timeout),
@@ -81,7 +83,8 @@ class Distributed:
         else:  # When running with python for debugging
             self.rank, self.local_rank, self.world_size = 0, 0, 1
             self.distributed = False
-        torch.cuda.set_device(self.local_rank)
+        if use_cuda:
+            torch.cuda.set_device(self.local_rank)
         self.barrier()
 
     def barrier(self) -> None:
@@ -150,11 +153,20 @@ def wrap_matching_layers(
 
 
 def parallelize_model(args, model: nn.Module, dist: Distributed, device='cuda', block_names=['AttentionBlock']) -> nn.Module:
+    device_type = device.type if hasattr(device, "type") else str(device)
+
+    # FSDP/DP only make sense on CUDA
+    if (not torch.cuda.is_available()) or (device_type != 'cuda'):
+        args.fsdp = 0
+
+    requires_grad_exists = any(p.requires_grad for p in model.parameters())
+
     if not getattr(args, "fsdp", False):  # use standard DDP
         model = model.to(device=device)
-        if dist.distributed:
+        if dist.distributed and requires_grad_exists and device_type == 'cuda':
             print(f"Using DDP")
-            model_ddp = torch.nn.parallel.DistributedDataParallel(model, device_ids=[dist.local_rank])
+            ddp_kwargs = {"device_ids": [dist.local_rank]} if device_type == 'cuda' else {"device_ids": None}
+            model_ddp = torch.nn.parallel.DistributedDataParallel(model, **ddp_kwargs)
         else:
             model_ddp = model  # compatible with DDP
         return model, model_ddp

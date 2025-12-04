@@ -817,7 +817,9 @@ class MetaBlock(torch.nn.Module):
                     if diff < jacobi_th or i == jacobi_max_iter - 1:  # do not clean the cache on the last iteration
                         local_done.fill_(1)
                     global_done = local_done.clone()
-                    torch.distributed.all_reduce(global_done, op=torch.distributed.ReduceOp.MIN)
+                    # Single-process runs (e.g., MPS) might not initialize torch.distributed
+                    if torch.distributed.is_available() and torch.distributed.is_initialized():
+                        torch.distributed.all_reduce(global_done, op=torch.distributed.ReduceOp.MIN)
                     if int(global_done.item()) == 1:
                         break
 

@@ -14,6 +14,7 @@ Usage:
 """
 
 import argparse
+import contextlib
 import copy
 import pathlib
 import time
@@ -48,13 +49,17 @@ DEFAULT_CAPTIONS = {
     'template5': "A realistic selfie of a llama standing in front of a classic Ivy League building on the Princeton University campus. He is smiling gently, wearing his iconic wild hair and mustache, dressed in a wool sweater and collared shirt. The photo has a vintage, slightly sepia tone, with soft natural lighting and leafy trees in the background, capturing an academic and historical vibe.",
 }
 
-
+def resolve_device() -> torch.device:
+    """Choose the best available device: CUDA -> CPU (explicitly disable MPS)."""
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    return torch.device("cpu")
 
 
 def setup_model_and_components(args: argparse.Namespace) -> Tuple[torch.nn.Module, Optional[torch.nn.Module], tuple]:
     """Initialize and load the model, VAE, and text encoder."""
     dist = utils.Distributed()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = resolve_device()
 
     # Set random seed
     utils.set_random_seed(args.seed + dist.rank)
@@ -81,7 +86,9 @@ def setup_model_and_components(args: argparse.Namespace) -> Tuple[torch.nn.Modul
     print(f"Loading checkpoint from local path: {args.checkpoint_path}")
     state_dict = torch.load(args.checkpoint_path, map_location='cpu')
     model.load_state_dict(state_dict, strict=False)
-    del state_dict; torch.cuda.empty_cache()
+    del state_dict
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
 
     # Set model to eval mode and disable gradients
     for p in model.parameters():
@@ -190,6 +197,9 @@ def main(args: argparse.Namespace) -> None:
     trainer_dict = vars(trainer_args)
     trainer_dict.update(vars(args))
     args = argparse.Namespace(**trainer_dict)
+    device = resolve_device()
+    if device.type != "cuda":
+        args.fsdp = 0  # CPU/MPS fallback
 
     # Handle target length configuration for video
     if args.target_length is not None:
@@ -205,7 +215,8 @@ def main(args: argparse.Namespace) -> None:
                 args.context_length = args.local_attn_window - 1
 
     # Override some settings for sampling
-    args.fsdp = 1  # sampling using FSDP if available.
+    if device.type == "cuda":
+        args.fsdp = 1  # sampling using FSDP if available.
     if args.use_pretrained_lm is not None:
         args.text = args.use_pretrained_lm
 
@@ -223,19 +234,24 @@ def main(args: argparse.Namespace) -> None:
 
     # Prepare captions and sampling parameters
     fixed_y, fixed_idxs, num_samples, caption_name = prepare_captions(args, dist)
-    print(f'Sampling {num_samples} from {args.caption} on {dist.world_size} GPU(s)')
+    print(f'Sampling {num_samples} from {args.caption} on {dist.world_size} device(s) [{device.type}]')
 
     get_noise = get_noise_shape(args, vae)
     sampling_kwargs = build_sampling_kwargs(args, caption_name)
     noise_std = args.target_noise_std if args.target_noise_std else args.noise_std
 
     # Start sampling
-    print(f'Starting sampling with global batch size {args.sample_batch_size}x{dist.world_size} GPUs')
-    torch.cuda.synchronize()
+    print(f'Starting sampling with global batch size {args.sample_batch_size}x{dist.world_size} devices')
+    if device.type == "cuda":
+        torch.cuda.synchronize()
     start_time = time.time()
 
     with torch.no_grad():
-        with torch.autocast(device_type='cuda', dtype=torch.float32):
+        if device.type == "cuda":
+            autocast_ctx = torch.autocast(device_type='cuda', dtype=torch.float32)
+        else:
+            autocast_ctx = contextlib.nullcontext()
+        with autocast_ctx:
             for i in tqdm.tqdm(range(int(np.ceil(num_samples / (args.sample_batch_size * dist.world_size))))):
                 # Determine aspect ratio and image shape
                 x_aspect = args.aspect_ratio if args.mix_aspect else None
@@ -290,7 +306,9 @@ def main(args: argparse.Namespace) -> None:
 
                 # Generate samples
                 samples = model(noise, y, reverse=True, kv_caches=kv_caches, **sampling_kwargs)
-                del kv_caches; torch.cuda.empty_cache()  # free up memory
+                del kv_caches
+                if device.type == "cuda":
+                    torch.cuda.empty_cache()  # free up memory
 
                 # Apply denoising if enabled
                 samples = process_denoising(
@@ -330,7 +348,8 @@ def main(args: argparse.Namespace) -> None:
                 )
 
     # Print timing statistics
-    torch.cuda.synchronize()
+    if device.type == "cuda":
+        torch.cuda.synchronize()
     elapsed_time = time.time() - start_time
     print(f'{model_name} cfg {args.cfg:.2f}, bsz={args.sample_batch_size}x{dist.world_size}, '
           f'time={elapsed_time:.2f}s, speed={num_samples / elapsed_time:.2f} images/s')
