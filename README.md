@@ -167,7 +167,7 @@ python scripts/extract_images.py input_file.mp4
 ## 🔧 Key Features
 
 - **Autoregressive Flow Architecture**: Novel combination of autoregressive models and normalizing flows
-- **High-Quality Generation**: Competetive FID scores and visual quality to State-of-the-art Diffusion Models
+- **High-Quality Generation**: Competitive FID scores and visual quality to State-of-the-art Diffusion Models
 - **Flexible Resolution**: Support for various aspect ratios and resolutions
 - **Efficient Training**: FSDP support for large-scale distributed training
 - **Fast Sampling**: Block-wise Jacobi iteration for accelerated inference
